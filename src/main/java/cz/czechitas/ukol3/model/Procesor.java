@@ -24,7 +24,7 @@ public class Procesor {
     public String toString() {
         return "Procesor{" +
                 "vyrobce='" + vyrobce + '\'' +
-                ", rychlost=" + rychlost + "Hz" +
+                ", rychlost=" + rychlost + " Hz" +
                 '}';
     }
 }

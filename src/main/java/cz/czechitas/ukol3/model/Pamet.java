@@ -14,7 +14,7 @@ public class Pamet {
     @Override
     public String toString() {
         return "Pamet{" +
-                "kapacita=" + kapacita + "Hz" +
+                "kapacita=" + kapacita + " Hz" +
                 '}';
     }
 }
