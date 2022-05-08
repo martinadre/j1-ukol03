@@ -5,6 +5,15 @@ public class Pocitac {
     private Procesor cpu;
     private Pamet ram;
     private Disk pevnyDisk;
+    private Disk druhyDisk;
+
+    public Disk getDruhyDisk() {
+        return druhyDisk;
+    }
+
+    public void setDruhyDisk(Disk druhyDisk) {
+        this.druhyDisk = druhyDisk;
+    }
 
     public Procesor getCpu() {
         return cpu;
@@ -36,7 +45,7 @@ public class Pocitac {
                 "jeZapnuty=" + jeZapnuty +
                 ", cpu=" + cpu +
                 ", ram=" + ram +
-                ", pevnyDisk=" + pevnyDisk +
+                ", pevnyDisk=" + pevnyDisk + ", druhyDisk=" + druhyDisk +
                 '}';
     }
     public boolean jeZapnuty() {
@@ -76,11 +85,19 @@ public class Pocitac {
             System.err.println("Počítač není zapnutý.");
             return;
         }
-        if((pevnyDisk.getVyuziteMisto() + velikost) > pevnyDisk.getKapacita()) {
-            System.err.println("Soubor se nevejde na disk.");
-            return;
+        long celkovaVelikostSouboru = pevnyDisk.getVyuziteMisto() + velikost;
+        if(celkovaVelikostSouboru > pevnyDisk.getKapacita()) {
+            long zbytek = celkovaVelikostSouboru - pevnyDisk.getKapacita();
+            if(druhyDisk.getVyuziteMisto() + zbytek > druhyDisk.getKapacita()) {
+                System.err.println("Soubor se nevejde na disky.");
+                return;
+            } else {
+                pevnyDisk.setVyuziteMisto(pevnyDisk.getKapacita());
+                druhyDisk.setVyuziteMisto(druhyDisk.getVyuziteMisto() + zbytek);
+                return;
+            }
         }
-        pevnyDisk.setVyuziteMisto(pevnyDisk.getVyuziteMisto() + velikost);
+        pevnyDisk.setVyuziteMisto(celkovaVelikostSouboru);
     }
 
     public void vymazSouboryOVelikosti(long velikost) {
@@ -88,10 +105,16 @@ public class Pocitac {
             System.err.println("Počítač není zapnutý.");
             return;
         }
-        if(pevnyDisk.getVyuziteMisto() - velikost < 0) {
-            System.err.println("Nelze vymyzat větší soubor než je využité místo na disku.");
+        if(velikost > druhyDisk.getVyuziteMisto()) {
+            long zbytek = velikost - druhyDisk.getVyuziteMisto();
+            if(zbytek > pevnyDisk.getVyuziteMisto()) {
+                System.err.println("Nelze vymyzat větší soubor než je využité místo na obou discích dohromady.");
+                return;
+            }
+            druhyDisk.setVyuziteMisto(0);
+            pevnyDisk.setVyuziteMisto(pevnyDisk.getVyuziteMisto() - zbytek);
             return;
         }
-        pevnyDisk.setVyuziteMisto(pevnyDisk.getVyuziteMisto() - velikost);
+        druhyDisk.setVyuziteMisto(druhyDisk.getVyuziteMisto() - velikost);
     }
 }

@@ -29,33 +29,50 @@ public class HlavniProgram {
         disk1.setKapacita(253_403_070_464L);
         disk1.setVyuziteMisto(192_199_786_496L);
 //        System.out.println(disk1);
+        Disk disk2 = new Disk();
+        disk2.setKapacita(100_000_000_000L);
+        disk2.setVyuziteMisto(0);
 
         pocitac1.setPevnyDisk(disk1);
         pocitac1.setRam(pamet1);
         pocitac1.setCpu(procesor1);
+        pocitac1.setDruhyDisk(disk2);
 
-        System.out.println(pocitac1);
-        pocitac1.vytvorSouborOVelikosti(1);
-        System.out.println(pocitac1);
+       System.out.println(pocitac1);
+       pocitac1.zapniSe();
+       pocitac1.vytvorSouborOVelikosti(80_000_000_000L);
+       System.out.println(pocitac1);
 
-        pocitac1.zapniSe();
-        pocitac1.vytvorSouborOVelikosti(1_000_000_000_000L);
-        System.out.println(pocitac1);
+       pocitac1.vytvorSouborOVelikosti(100_000_000_000L);
+       System.out.println(pocitac1);
 
-        pocitac1.vytvorSouborOVelikosti(1);
-        System.out.println(pocitac1);
+       pocitac1.vymazSouboryOVelikosti(200_000_000_000L);
+       System.out.println(pocitac1);
 
-        pocitac1.vypniSe();
-        pocitac1.vymazSouboryOVelikosti(1);
-        System.out.println(pocitac1);
+       pocitac1.vymazSouboryOVelikosti(100_000_000_000L);
+       System.out.println(pocitac1);
 
-        pocitac1.zapniSe();
-        pocitac1.vymazSouboryOVelikosti(1_000_000_000_000L);
-        System.out.println(pocitac1);
+//        pocitac1.vytvorSouborOVelikosti(1);
+//        System.out.println(pocitac1);
+//
+//        pocitac1.zapniSe();
+//        pocitac1.vytvorSouborOVelikosti(1_000_000_000_000L);
+//        System.out.println(pocitac1);
+//
+//        pocitac1.vytvorSouborOVelikosti(1);
+//        System.out.println(pocitac1);
+//
+//        pocitac1.vypniSe();
+//        pocitac1.vymazSouboryOVelikosti(1);
+//        System.out.println(pocitac1);
+//
+//        pocitac1.zapniSe();
+//        pocitac1.vymazSouboryOVelikosti(1_000_000_000_000L);
+//        System.out.println(pocitac1);
+//
+//        pocitac1.vymazSouboryOVelikosti(2);
+//        System.out.println(pocitac1);
 
-        pocitac1.vymazSouboryOVelikosti(2);
-        System.out.println(pocitac1);
-        
 //        System.out.println(pocitac1.jeZapnuty());
 //        pocitac1.zapniSe();
 //        pocitac1.zapniSe();
